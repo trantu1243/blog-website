@@ -1,0 +1,39 @@
+<%- include("partials/header") -%>
+    <div class="content box">
+        <% if(webTitle === "Add blog"){ %>
+            <div class="item">
+                <h1><%= webTitle %></h1>
+                <form action="/add" method="post">
+                    <label>Title</label>
+                    <input type="text" name="title" class="input title" autocomplete="off">
+                    <label>Post</label>
+                    <textarea name="content" class="input post" ></textarea>
+                    <button type="submit" name="submit" value="submit" class="add">Submit</button>
+
+                </form>
+            </div>
+        <% } else { %>
+        
+        <% for(let i=0; i < blogs.length; i++){ %>
+           
+            <div class="item">
+                <form action="/" method="post">
+                    <button type="submit" class="blogTitle" name="submit" value="<%= blogs[i].path %>">
+                        <h1><%= blogs[i].title %></h1>
+                    </button>
+                    
+                </form>
+                <p class="paragraph"><%= blogs[i].content %></p>
+            </div>
+        <% } } %>
+        
+        <% if(webTitle === "Blog Website"){ %>
+            <div>
+                <form action="/" method="post">
+                    <button type="submit" name="submit" value="add" class="add">Add</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+    
+<%- include("partials/footer") -%>
